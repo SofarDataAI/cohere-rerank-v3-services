@@ -63,8 +63,4 @@ export interface CohereRerankV3ServiceArgs {
      * The model for Cohere services.
      */
     readonly cohereEmbedModel: string;
-    /**
-     * The API key for data ingestion services.
-     */
-    readonly dataIngestionApiKey: string;
 }
