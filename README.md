@@ -76,10 +76,10 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
 To see a demo of the service running locally with Docker, refer to the screenshot below:
 
-![Local Demo with Docker](demo_local_host.png)
+![Local Demo with Docker](assets/demo_local_host.png)
 
 ### AWS App Runner Demo
 
 After deploying the service on AWS with App Runner, you can see the demo as shown in the screenshot below:
 
-![AWS App Runner Demo](demo_app_runner_aws.png)
+![AWS App Runner Demo](assets/demo_app_runner_aws.png)
