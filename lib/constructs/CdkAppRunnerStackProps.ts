@@ -1,6 +1,6 @@
 import { NestedStackProps } from "aws-cdk-lib";
 import * as cdk from "aws-cdk-lib";
-import { CohereRerankV3Services } from "../../lib/CohereRerankV3ServicesStackProps";
+import { CohereRerankV3Services } from "../CohereRerankV3ServicesStackProps";
 
 export interface CdkCohereRerankV3AppRunnerStackProps extends NestedStackProps, CohereRerankV3Services {
     /**
