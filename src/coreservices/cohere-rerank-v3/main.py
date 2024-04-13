@@ -6,7 +6,7 @@ app = FastAPI()
 
 # extract the environment variables
 COHERE_API_KEY = os.environ['COHERE_API_KEY']
-COHERE_EMBED_MODEL = os.environ['COHERE_EMBED_MODEL']
+COHERE_RERANK_MODEL = os.environ['COHERE_RERANK_MODEL']
 
 
 @app.get("/")
@@ -38,7 +38,7 @@ def embed_text(request: dict) -> dict:
     """
     embed_model = CohereEmbedding(
         cohere_api_key=COHERE_API_KEY,
-        model_name=COHERE_EMBED_MODEL,
+        model_name=COHERE_RERANK_MODEL,
         input_type=input_type,
         embedding_type=embedding_type
     )

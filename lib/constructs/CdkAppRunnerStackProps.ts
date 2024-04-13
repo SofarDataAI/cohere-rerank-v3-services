@@ -25,5 +25,5 @@ export interface CdkCohereRerankV3DockerRunArgTyped {
     /**
      * The model for Cohere services.
      */
-    readonly COHERE_EMBED_MODEL: string;
+    readonly COHERE_RERANK_MODEL: string;
 }

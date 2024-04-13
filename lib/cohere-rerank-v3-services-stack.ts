@@ -37,7 +37,7 @@ export class CohereRerankV3ServicesStack extends cdk.Stack {
       ecrRepository,
       dockerRunArgs: {
         COHERE_API_KEY: props.cohereApiKey,
-        COHERE_EMBED_MODEL: props.cohereEmbedModel,
+        COHERE_RERANK_MODEL: props.cohereRerankModel,
       },
       description: 'App Runner service for Cohere Embed V3.',
     });

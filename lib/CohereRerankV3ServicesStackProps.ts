@@ -62,5 +62,5 @@ export interface CohereRerankV3ServiceArgs {
     /**
      * The model for Cohere services.
      */
-    readonly cohereEmbedModel: string;
+    readonly cohereRerankModel: string;
 }
