@@ -1,6 +1,16 @@
 ## 2024-04-13
 
 ### Added
+- Updated import statements in `cohere-rerank-v3-services-stack.ts` to fix class naming and CPU input.
+- Added `CdkCohereRerankV3AppRunnerStack` class to `cohere-rerank-v3-app-runner.ts` for deploying an AWS App Runner service.
+- Added `CdkEcrDeploymentStack` class to `cohere-rerank-v3-ecr.ts` for deploying an ECR repository and performing ECR deployment.
+- Removed duplicate cases in `parseMemoryType` function in `check-hardware-input.ts`.
+- Updated the `PLATFORM`, `CPU_TYPE`, and `MEMORY_TYPE` variables in `.env.example`.
+- Added a new section for setting up the environment in `README.md`.
+
+## 2024-04-13
+
+### Added
 - Added a new section in the README.md file for demos.
 - Included a local demo with Docker and a demo for AWS App Runner.
 - Added screenshots for both demos.

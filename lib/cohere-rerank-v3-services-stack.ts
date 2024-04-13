@@ -1,9 +1,9 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { CohereRerankV3ServicesStackProps } from './CohereRerankV3ServicesStackProps';
-import { CdkEcrDeploymentStack } from './constructs/cohere-embed-v3-ecr';
+import { CdkEcrDeploymentStack } from './constructs/cohere-rerank-v3-ecr';
 import { CohereRerankVpcStack } from './constructs/cohere-rerank-v3-vpc';
-import { CdkCohereRerankV3AppRunnerStack } from './constructs/cohere-embded-v3-app-runner';
+import { CdkCohereRerankV3AppRunnerStack } from './constructs/cohere-rerank-v3-app-runner';
 
 /**
  * The `CohereRerankV3ServicesStack` class defines the AWS infrastructure as code for the Cohere Embed V3 Services.
