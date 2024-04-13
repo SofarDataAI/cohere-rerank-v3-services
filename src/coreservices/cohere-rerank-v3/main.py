@@ -53,7 +53,7 @@ def rerank(request: dict) -> dict:
         "id": rerank_response.id,
         "results": [
             {
-                "document": result.document,
+                "document": result.document.__dict__,
                 "index": result.index,
                 "relevance_score": result.relevance_score
             } for result in rerank_response.results
