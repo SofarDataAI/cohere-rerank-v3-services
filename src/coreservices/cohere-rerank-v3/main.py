@@ -28,6 +28,7 @@ def rerank(request: dict) -> dict:
     query = request['query']
     documents = request['documents']
     top_n = request.get('top_n', 5)
+    rank_fields = request.get('rank_fields', [])
     return_documents = request.get('return_documents', False)
     """
         A function to rerank documents using the Cohere API.
@@ -46,6 +47,6 @@ def rerank(request: dict) -> dict:
     rerank_model_name = COHERE_RERANK_MODEL
 
     rerank_result = cohere_client.rerank(
-        model=rerank_model_name, query=query, documents=documents, top_n=top_n, return_documents=return_documents)
+        model=rerank_model_name, query=query, documents=documents, top_n=top_n, return_documents=return_documents, rank_fields=rank_fields)
 
     return json.dumps(rerank_result)
