@@ -32,7 +32,7 @@ const cohereRerankModel = process.env.COHERE_RERANK_MODEL!;
 const imageVersion = process.env.IMAGE_VERSION!;
 const ecrRepositoryName = process.env.ECR_REPOSITORY_NAME!;
 const dockerfileName = process.env.DOCKERFILE_NAME!;
-const port = process.env.PORT!;
+const cdkDeployPort = process.env.PORT!;
 const cdkDeployPlatform = process.env.PLATFORM!;
 const cdkDeployPlatformString = cdkDeployPlatform === `LINUX_ARM64` ? `arm64` : `amd64`;
 const cdkDeployCpuType = process.env.CPU_TYPE!;
@@ -53,7 +53,7 @@ new CohereRerankV3ServicesStack(app, `${appName}-${deployRegion}-${deployEnviron
   ecrRepositoryImageTag: imageVersion,
   ecrRepositoryName,
   dockerfileName,
-  cdkDeployPort: port,
+  cdkDeployPort: cdkDeployPort,
   cdkDeployPlatformString,
   cdkDeployCpuType,
   cdkDeployMemoryType,
