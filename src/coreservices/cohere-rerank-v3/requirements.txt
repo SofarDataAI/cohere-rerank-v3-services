@@ -1,4 +1,4 @@
-uvicorn==0.28.0
+uvicorn==0.29.0
 fastapi==0.110.1
 starlette==0.37.2
 cohere==5.2.5
