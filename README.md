@@ -83,3 +83,18 @@ To see a demo of the service running locally with Docker, refer to the screensho
 After deploying the service on AWS with App Runner, you can see the demo as shown in the screenshot below:
 
 ![AWS App Runner Demo](assets/demo_app_runner_aws.png)
+## Setup Environment
+
+To configure your environment variables for local development and deployment, follow these steps:
+
+1. Copy the `.env.example` file to a new file named `.env`:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Open the `.env` file in a text editor and fill in the necessary values for the environment variables. This file will not be tracked by git, so your sensitive information will remain secure.
+
+3. Save the changes to the `.env` file. The application will automatically use these settings when running locally or when deployed.
+
+Make sure to never commit your `.env` file to version control to keep sensitive keys and settings confidential.
