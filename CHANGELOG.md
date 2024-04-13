@@ -1,6 +1,13 @@
 ## 2024-04-13
 
 ### Added
+- Added a new section in the README.md file for demos.
+- Included a local demo with Docker and a demo for AWS App Runner.
+- Added screenshots for both demos.
+
+## 2024-04-13
+
+### Added
 - Added support for loading environment variables from a `.env` file using the `dotenv` package.
 - Added a function `checkEnvVariables` to validate the presence of required environment variables.
 - Added new interfaces `CohereRerankV3Services` and `CohereRerankV3ServicesStackProps` to improve type safety.
