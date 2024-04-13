@@ -1,21 +1,65 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
+
 import * as cdk from 'aws-cdk-lib';
+import * as dotenv from 'dotenv';
 import { CohereRerankV3ServicesStack } from '../lib/cohere-rerank-v3-services-stack';
+import { checkEnvVariables } from '../utils/check-environment-variables';
+
+dotenv.config(); // Load environment variables from .env file
+
+const { CDK_DEFAULT_ACCOUNT: account, CDK_DEFAULT_REGION: region } = process.env;
+
+// check variables
+checkEnvVariables('APP_NAME',
+    'ENVIRONMENT',
+    'ECR_REPOSITORY_NAME',
+    'IMAGE_VERSION',
+    'DOCKERFILE_NAME',
+    'PLATFORM',
+    'PORT',
+    'COHERE_API_KEY',
+    'COHERE_RERANK_MODEL',
+    'CPU_TYPE',
+    'MEMORY_TYPE',
+);
+
+const appName = process.env.APP_NAME!;
+const deployEnvironment = process.env.ENVIRONMENT!;
+const deployRegion = process.env.CDK_DEPLOY_REGION!;
+const cohereApiKey = process.env.COHERE_API_KEY!;
+const cohereRerankModel = process.env.COHERE_RERANK_MODEL!;
+const imageVersion = process.env.IMAGE_VERSION!;
+const ecrRepositoryName = process.env.ECR_REPOSITORY_NAME!;
+const dockerfileName = process.env.DOCKERFILE_NAME!;
+const cdkDeployPort = process.env.PORT!;
+const cdkDeployPlatform = process.env.PLATFORM!;
+const cdkDeployPlatformString = cdkDeployPlatform === `LINUX_ARM64` ? `arm64` : `amd64`;
+const cdkDeployCpuType = process.env.CPU_TYPE!;
+const cdkDeployMemoryType = process.env.MEMORY_TYPE!;
 
 const app = new cdk.App();
-new CohereRerankV3ServicesStack(app, 'CohereRerankV3ServicesStack', {
-  /* If you don't specify 'env', this stack will be environment-agnostic.
-   * Account/Region-dependent features and context lookups will not work,
-   * but a single synthesized template can be deployed anywhere. */
-
-  /* Uncomment the next line to specialize this stack for the AWS Account
-   * and Region that are implied by the current CLI configuration. */
-  // env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION },
-
-  /* Uncomment the next line if you know exactly what Account and Region you
-   * want to deploy the stack to. */
-  // env: { account: '123456789012', region: 'us-east-1' },
-
-  /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
+new CohereRerankV3ServicesStack(app, `${appName}-${deployRegion}-${deployEnvironment}-CohereRerankV3ServicesStack`, {
+  resourcePrefix: `${appName}-${deployRegion}-${deployEnvironment}`,
+  cdkDeployRegion: deployRegion,
+  cdkDeployEnvironment: deployEnvironment,
+  env: {
+      account,
+      region: deployRegion,
+  },
+  appName,
+  cohereApiKey,
+  cohereRerankModel: cohereRerankModel,
+  ecrRepositoryImageTag: imageVersion,
+  ecrRepositoryName,
+  dockerfileName,
+  cdkDeployPort: cdkDeployPort,
+  cdkDeployPlatformString,
+  cdkDeployCpuType,
+  cdkDeployMemoryType,
+  cdkDeployPlatform: cdkDeployPlatform,
+  description: `${appName}-${deployRegion}-${deployEnvironment}-CohereRerankV3ServicesStack`,
+  stackName: `${deployEnvironment}-${cdkDeployPlatformString}-CohereRerankV3ServicesStack`,
 });
+
+app.synth();
