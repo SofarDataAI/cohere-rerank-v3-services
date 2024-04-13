@@ -1,12 +1,15 @@
+import json
 import os
 from fastapi import FastAPI
-from llama_index.embeddings.cohere import CohereEmbedding
+import cohere
 
-app = FastAPI()
 
 # extract the environment variables
 COHERE_API_KEY = os.environ['COHERE_API_KEY']
 COHERE_RERANK_MODEL = os.environ['COHERE_RERANK_MODEL']
+
+
+app = FastAPI()
 
 
 @app.get("/")
@@ -20,28 +23,29 @@ def hello_world() -> dict:
     return {"Hello": "World"}
 
 
-@app.post("/embed")
-def embed_text(request: dict) -> dict:
-    text = request['text']
-    input_type = request['input_type']
-    embedding_type = request.get('embedding_type', 'float')
+@app.post("/rerank")
+def rerank(request: dict) -> dict:
+    query = request['query']
+    documents = request['documents']
+    top_n = request.get('top_n', 5)
+    return_documents = request.get('return_documents', False)
     """
-        A function to embed text using the Cohere API.
+        A function to rerank documents using the Cohere API.
 
         Args:
-            text (str): The text to embed.
-            input_type (str): The type of input data.
-            embedding_type (str): The type of embedding to return.
+            query (str): The query to rerank documents.
+            documents (list): The list of documents to rerank.
+            top_n (int): The number of documents to return.
+            return_documents (bool): A flag to return the documents.
 
         Returns:
-            dict: A dictionary with the embeddings.
+            dict: A dictionary with the reranked documents.
     """
-    embed_model = CohereEmbedding(
-        cohere_api_key=COHERE_API_KEY,
-        model_name=COHERE_RERANK_MODEL,
-        input_type=input_type,
-        embedding_type=embedding_type
-    )
 
-    embeddings = embed_model.get_text_embedding(text)
-    return {"embeddings": embeddings}
+    cohere_client = cohere.Client(api_key=COHERE_API_KEY)
+    rerank_model_name = COHERE_RERANK_MODEL
+
+    rerank_result = cohere_client.rerank(
+        model=rerank_model_name, query=query, documents=documents, top_n=top_n, return_documents=return_documents)
+
+    return json.dumps(rerank_result)
