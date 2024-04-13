@@ -46,7 +46,20 @@ def rerank(request: dict) -> dict:
     cohere_client = cohere.Client(api_key=COHERE_API_KEY)
     rerank_model_name = COHERE_RERANK_MODEL
 
-    rerank_result = cohere_client.rerank(
+    rerank_response = cohere_client.rerank(
         model=rerank_model_name, query=query, documents=documents, top_n=top_n, return_documents=return_documents, rank_fields=rank_fields)
-
-    return json.dumps(rerank_result)
+    # Convert the RerankResponse object to a dictionary and return it
+    return {
+        "id": rerank_response.id,
+        "results": [
+            {
+                "document": result.document,
+                "index": result.index,
+                "relevance_score": result.relevance_score
+            } for result in rerank_response.results
+        ],
+        "meta": {
+            "api_version": rerank_response.meta.api_version.version,
+            "billed_units": rerank_response.meta.billed_units.search_units
+        }
+    }
