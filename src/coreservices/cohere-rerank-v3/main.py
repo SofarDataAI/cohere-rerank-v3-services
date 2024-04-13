@@ -37,6 +37,7 @@ def rerank(request: dict) -> dict:
             query (str): The query to rerank documents.
             documents (list): The list of documents to rerank.
             top_n (int): The number of documents to return.
+            rank_fields (list): The list of fields to rank the documents.
             return_documents (bool): A flag to return the documents.
 
         Returns:
