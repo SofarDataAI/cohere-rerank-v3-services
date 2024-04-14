@@ -74,6 +74,7 @@ To see a demo of the service running locally with Docker, refer to the screensho
 After deploying the service on AWS with App Runner, you can see the demo as shown in the screenshot below:
 
 ![AWS App Runner Demo](assets/demo_app_runner_aws.png)
+
 ## Setup Environment
 
 To configure your environment variables for local development and deployment, follow these steps:
