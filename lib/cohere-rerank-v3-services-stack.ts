@@ -1,8 +1,8 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
+import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import { CohereRerankV3ServicesStackProps } from './CohereRerankV3ServicesStackProps';
 import { CdkEcrDeploymentStack } from './constructs/cohere-rerank-v3-ecr';
-import { CohereRerankVpcStack } from './constructs/cohere-rerank-v3-vpc';
 import { CdkCohereRerankV3AppRunnerStack } from './constructs/cohere-rerank-v3-app-runner';
 
 /**
@@ -19,11 +19,9 @@ export class CohereRerankV3ServicesStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props: CohereRerankV3ServicesStackProps) {
     super(scope, id, props);
 
-    const vpcStack = new CohereRerankVpcStack(this, `${props.resourcePrefix}-VpcStack`, {
-      ...props,
-      description: 'VPC for Cohere Embed V3.',
+    const vpc = ec2.Vpc.fromLookup(this, `${props.resourcePrefix}-VPC`, {
+      vpcId: props.vpcId,
     });
-    const vpc = vpcStack.cohereVpc;
 
     const ecrStack = new CdkEcrDeploymentStack(this, `${props.resourcePrefix}-EcrStack`, {
       ...props,
