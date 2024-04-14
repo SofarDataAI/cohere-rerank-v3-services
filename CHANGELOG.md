@@ -1,3 +1,15 @@
+## 2024-04-14
+
+### Added
+- Added 'VPC_ID' to the list of required environment variables in the 'bin/cohere-rerank-v3-services.ts' file.
+- Assigned the value of 'VPC_ID' to the 'vpcId' variable in the same file.
+- Added a 'vpcId' property to the 'CohereRerankV3Services' interface in the 'lib/CohereRerankV3ServicesStackProps.ts' file.
+- Removed the import statement for 'CohereRerankVpcStack' and replaced it with 'ec2.Vpc.fromLookup' to get the VPC by 'vpcId' in the 'lib/cohere-rerank-v3-services-stack.ts' file.
+- Removed the 'CohereRerankVpcStack' class and associated resources in the 'lib/constructs/cohere-rerank-v3-vpc.ts' file.
+- Added 'VPC_ID' to the 'ProcessEnv' interface in the 'process-env.d.ts' file.
+- Added 'VPC_ID' to the example environment variables in the '.env.example' file.
+- Added instructions for deploying the stack from a repository and using the obtained 'VPC_ID' in the 'README.md' file.
+
 ## 2024-04-13
 
 ### Added

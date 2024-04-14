@@ -22,6 +22,7 @@ checkEnvVariables('APP_NAME',
     'COHERE_RERANK_MODEL',
     'CPU_TYPE',
     'MEMORY_TYPE',
+    'VPC_ID',
 );
 
 const appName = process.env.APP_NAME!;
@@ -37,6 +38,7 @@ const cdkDeployPlatform = process.env.PLATFORM!;
 const cdkDeployPlatformString = cdkDeployPlatform === `LINUX_ARM64` ? `arm64` : `amd64`;
 const cdkDeployCpuType = process.env.CPU_TYPE!;
 const cdkDeployMemoryType = process.env.MEMORY_TYPE!;
+const vpcId = process.env.VPC_ID!;
 
 const app = new cdk.App();
 new CohereRerankV3ServicesStack(app, `${appName}-${deployRegion}-${deployEnvironment}-CohereRerankV3ServicesStack`, {
@@ -56,6 +58,7 @@ new CohereRerankV3ServicesStack(app, `${appName}-${deployRegion}-${deployEnviron
   cdkDeployPort: cdkDeployPort,
   cdkDeployPlatformString,
   cdkDeployCpuType,
+  vpcId,
   cdkDeployMemoryType,
   cdkDeployPlatform: cdkDeployPlatform,
   description: `${appName}-${deployRegion}-${deployEnvironment}-CohereRerankV3ServicesStack`,
