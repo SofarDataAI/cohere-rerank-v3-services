@@ -52,6 +52,10 @@ export interface CohereRerankV3Services {
      * The memory type for the deployment.
      */
     readonly cdkDeployMemoryType: string;
+    /**
+     * The vpcId for the deployment.
+     */
+    readonly vpcId: string;
 }
 
 export interface CohereRerankV3ServiceArgs {

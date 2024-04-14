@@ -61,15 +61,6 @@ This is a blank project for CDK development with TypeScript.
 
 The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
-## Useful commands
-
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `npx cdk deploy`  deploy this stack to your default AWS account/region
-* `npx cdk diff`    compare deployed stack with current state
-* `npx cdk synth`   emits the synthesized CloudFormation template
-
 ## Demo
 
 ### Local Demo with Docker
@@ -83,9 +74,15 @@ To see a demo of the service running locally with Docker, refer to the screensho
 After deploying the service on AWS with App Runner, you can see the demo as shown in the screenshot below:
 
 ![AWS App Runner Demo](assets/demo_app_runner_aws.png)
+
 ## Setup Environment
 
 To configure your environment variables for local development and deployment, follow these steps:
+
+## Deploying from Repository
+
+You can deploy the stack from the following repository: [AWS VPC Creator](https://github.com/SofarDatas/aws-vpc-creator). After deployment, you can use the VPC_ID obtained from there as an input parameter.
+
 
 1. Copy the `.env.example` file to a new file named `.env`:
 
