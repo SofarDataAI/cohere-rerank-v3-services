@@ -13,5 +13,6 @@ declare module NodeJS {
         COHERE_RERANK_MODEL: string | undefined;
         CPU_TYPE: string | undefined;
         MEMORY_TYPE: string | undefined;
+        VPC_ID: string | undefined;
     }
 }
