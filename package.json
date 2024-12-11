@@ -1,6 +1,6 @@
 {
   "name": "cohere-rerank-v3-services",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "bin": {
     "cohere-rerank-v3-services": "bin/cohere-rerank-v3-services.js"
   },
