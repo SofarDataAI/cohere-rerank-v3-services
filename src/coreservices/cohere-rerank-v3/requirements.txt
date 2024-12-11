@@ -1,5 +1,5 @@
-uvicorn==0.29.0
-fastapi==0.110.1
-starlette==0.37.2
-cohere==5.2.5
-pydantic==2.7.0
+uvicorn==0.32.1
+fastapi==0.115.6
+starlette==0.41.3
+cohere==5.13.3
+pydantic==2.10.3

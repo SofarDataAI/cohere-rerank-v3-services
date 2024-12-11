@@ -1,3 +1,18 @@
+## [2024-12-11]
+
+### Added
+- Support for `rerank-v3.5` Cohere rerank model
+- Model validation to ensure only supported rerank models are used
+
+### Updated
+- Default `COHERE_RERANK_MODEL` to `rerank-v3.5`
+- Updated `cohere` library from `5.2.5` to `5.13.3`
+- Bumped package version from `0.2.0` to `0.2.1`
+
+### Changed
+- Implemented `SUPPORTED_RERANK_MODELS` list for model validation
+- Updated various dependencies including FastAPI, AWS CDK, and TypeScript libraries
+
 ## 2024-04-14
 
 ### Added

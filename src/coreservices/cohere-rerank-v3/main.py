@@ -7,6 +7,7 @@ import cohere
 # extract the environment variables
 COHERE_API_KEY = os.environ['COHERE_API_KEY']
 COHERE_RERANK_MODEL = os.environ['COHERE_RERANK_MODEL']
+SUPPORTED_RERANK_MODELS = ['rerank-english-v3.0', 'rerank-multilingual-v3.0', 'rerank-v3.5']
 
 
 app = FastAPI()
@@ -44,8 +45,11 @@ def rerank(request: dict) -> dict:
             dict: A dictionary with the reranked documents.
     """
 
-    cohere_client = cohere.Client(api_key=COHERE_API_KEY)
     rerank_model_name = COHERE_RERANK_MODEL
+    cohere_client = cohere.Client(api_key=COHERE_API_KEY)
+    if rerank_model_name is None or rerank_model_name not in SUPPORTED_RERANK_MODELS:
+        # throw an unsupported model error
+        raise ValueError(f"Unsupported rerank model name. Supported models are: {SUPPORTED_RERANK_MODELS}")
 
     rerank_response = cohere_client.rerank(
         model=rerank_model_name, query=query, documents=documents, top_n=top_n, return_documents=return_documents, rank_fields=rank_fields)
